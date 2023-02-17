@@ -99,7 +99,7 @@ async def hangdler(message: types.Message, state: FSMContext):
 			await st.item.set()
 
 @dp.message_handler(content_types=['text'])
-@dp.throttled(func.antiflood, rate=120) #120 - секунды после каждого сообщения пользователя, анти-флуд система.
+@dp.throttled(func.antiflood, rate=5) #5 - секунды после каждого сообщения пользователя, анти-флуд система.
 async def h(message: types.Message, state: FSMContext):
 	func.join(chat_id=message.chat.id)
 	q.execute(f"SELECT block FROM users WHERE user_id = {message.chat.id}")
